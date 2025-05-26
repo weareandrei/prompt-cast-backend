@@ -10,7 +10,7 @@ export class AppController {
     return this.appService.getHello()
   }
 
-  @Post('creat-podcast')
+  @Post('create-podcast')
   createPodcast(
     @Body() payload: { title: string; description?: string }
   ): boolean {
