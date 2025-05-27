@@ -1,4 +1,5 @@
 type PodcastConfig = {
+  id: string
   voice: 'male' | 'female'
   topic: string
   timeLimit: number

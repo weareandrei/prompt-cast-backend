@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import OpenAI from 'openai'
 import { PodcastConfig } from './common/types/podcastConfig'
+import { post } from './common/util/api'
 
 @Injectable()
 export class AppService {
@@ -8,7 +9,7 @@ export class AppService {
     return 'Hello World!'
   }
 
-  async createPodcast(payload: PodcastConfig): Promise<boolean> {
+  async createPodcast(payload: PodcastConfig) {
     try {
       const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
@@ -40,10 +41,23 @@ Don't make any annotations. Don't mentions anything like "background music", or 
         response.choices[0].message.content
       )
 
-      return true
+      const script = response.choices[0].message.content
+
+      const res = await post(
+        'update-podcast-status',
+        {
+          podcastId: payload.id,
+          status: 'completed',
+          script,
+        },
+        { token: process.env.SUPABASE_SERVICE_ROLE }
+      )
+      console.log('res', res)
     } catch (error) {
-      console.error('OpenAI error:', error)
-      return false
+      console.error(
+        'Supabase Edge function error while calling /update-podcast-status :',
+        error
+      )
     }
   }
 }

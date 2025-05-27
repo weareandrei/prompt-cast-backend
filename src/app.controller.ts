@@ -12,7 +12,7 @@ export class AppController {
   }
 
   @Post('create-podcast')
-  createPodcast(@Body() payload: PodcastConfig): Promise<boolean> {
+  createPodcast(@Body() payload: PodcastConfig): Promise<void> {
     return this.appService.createPodcast(payload)
   }
 }
