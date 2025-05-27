@@ -1,13 +1,5 @@
-// lib/api.ts
-
-const SUPABASE_URL = process.env.SUPABASE_URL
-
-if (!SUPABASE_URL) {
-  throw new Error('Supabase environment variables are missing')
-}
-
 type Options = {
-  token?: string // Optional: Supabase user token
+  token?: string
   headers?: Record<string, string>
 }
 
@@ -16,7 +8,7 @@ export async function post<T = any>(
   body: any,
   options: Options = {}
 ): Promise<T> {
-  const url = `${SUPABASE_URL}/functions/v1/${functionName}`
+  const url = `${process.env.SUPABASE_URL}/functions/v1/${functionName}`
 
   const res = await fetch(url, {
     method: 'POST',
@@ -42,7 +34,7 @@ export async function get<T = any>(
   functionName: string,
   options: Options = {}
 ): Promise<T> {
-  const url = `${SUPABASE_URL}/functions/v1/${functionName}`
+  const url = `${process.env.SUPABASE_URL}/functions/v1/${functionName}`
 
   const res = await fetch(url, {
     method: 'GET',
