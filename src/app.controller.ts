@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common'
 import { AppService } from './app.service'
+import { type PodcastConfig } from './common/types/podcastConfig'
 
 @Controller()
 export class AppController {
@@ -11,9 +12,7 @@ export class AppController {
   }
 
   @Post('create-podcast')
-  createPodcast(
-    @Body() payload: { title: string; description?: string }
-  ): boolean {
+  createPodcast(@Body() payload: PodcastConfig): Promise<boolean> {
     return this.appService.createPodcast(payload)
   }
 }
