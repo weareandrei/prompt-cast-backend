@@ -20,13 +20,21 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.1.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
+    "@supabase/supabase-js": "^2.49.8",
+    "axios": "^1.9.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.2.2",
+    "fs": "^0.0.1-security",
+    "object-hash": "^3.0.0",
     "openai": "^4.103.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "stream": "^0.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
