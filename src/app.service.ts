@@ -151,7 +151,7 @@ export class AppService {
       `[generateAudioAndUpload] Audio uploaded. File name: ${fileName}`
     )
 
-    await this.updatePodcastStatus(podcastId, 'complete', undefined, fileName)
+    await this.updatePodcastStatus(podcastId, 'completed', undefined, fileName)
   }
 
   private async checkCachedAudio(fileName: string): Promise<boolean> {
